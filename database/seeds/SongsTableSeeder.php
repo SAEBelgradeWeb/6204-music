@@ -11,6 +11,6 @@ class SongsTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(App\Song::class, 100)->create();
     }
 }

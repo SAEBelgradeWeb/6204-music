@@ -1,0 +1,36 @@
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class CreateAlbumsTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('albums', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('title');
+            $table->string('cover_art')->nullable();
+            $table->date('published_at')->nullable();
+            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('artist_id');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('albums');
+    }
+}

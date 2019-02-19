@@ -49,6 +49,16 @@ class HomeController extends Controller
 
     public function store(Request $request)
     {
+        if($request->artist) $request->artist_id = null;
+        if($request->album) $request->album_id = null;
+
+        $validatedData = $request->validate([
+            'title' => 'required',
+            'artist_id' => 'required_without:artist',
+            'artist' => 'required_without:artist_id',
+            'album_id' => 'required_without:album',
+            'album' => 'required_without:album_id',
+        ]);
         if($request->artist) {
             $artist = Artist::create(['user_id' => \Auth::user()->id, 'name' => $request->artist]);
         } else {
@@ -58,7 +68,7 @@ class HomeController extends Controller
         if($request->album) {
             $album = Album::create(['user_id' => \Auth::user()->id, 'title' => $request->album, 'artist_id' => $artist->id]);
         } else {
-            $album = Artist::find($request->album_id);
+            $album = Album::find($request->album_id);
         }
 
         Song::create([

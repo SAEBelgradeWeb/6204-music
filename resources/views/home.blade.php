@@ -6,7 +6,9 @@
         <p>
         <a class="btn btn-primary" href="/songs/create">Add new song</a>
         </p>
-        <div class="col-md-12">
+        <example-component></example-component>
+        <songs-component></songs-component>
+        {{--<div class="col-md-12">
             <table class="table table-bordered">
                 <tr>
                     <th>Song</th>
@@ -29,7 +31,7 @@
                     @endforeach
                 @endforeach
             </table>
-        </div>
+        </div>--}}
     </div>
 </div>
 @endsection

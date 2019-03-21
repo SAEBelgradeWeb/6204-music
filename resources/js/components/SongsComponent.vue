@@ -29,11 +29,23 @@
             }
         },
         mounted() {
-            axios.get('/api/songs')
-                .then(response => {
-                    this.artists = response.data;
-                    this.$message('All songs fetched');
-                })
+
+            this.fetchSongs();
+
+            Echo.channel('notifications')
+                .listen("SongSavedEvent", (e) => {
+                    this.fetchSongs();
+                });
+        },
+
+        methods: {
+            fetchSongs() {
+                axios.get('/api/songs')
+                    .then(response => {
+                        this.artists = response.data;
+                       // this.$message('All songs fetched');
+                    })
+            }
         }
     }
 </script>

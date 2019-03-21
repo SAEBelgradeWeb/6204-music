@@ -21,3 +21,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/songs/create', 'HomeController@create')->name('create-song');
 
 Route::post('/songs', 'HomeController@store');
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});
+
+Route::get('blog', 'PagesController@index');

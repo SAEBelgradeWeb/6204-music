@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Album;
 use App\Artist;
+use App\Events\SongSavedEvent;
 use App\Song;
 use Illuminate\Http\Request;
 
@@ -71,12 +72,14 @@ class HomeController extends Controller
             $album = Album::find($request->album_id);
         }
 
-        Song::create([
+        $song = Song::create([
             'title' => $request->title,
             'album_id' => $album->id,
             'artist_id' => $artist->id,
             'user_id' => \Auth::user()->id
             ]);
+
+        event(new SongSavedEvent($song));
         return redirect('/home');
     }
 }

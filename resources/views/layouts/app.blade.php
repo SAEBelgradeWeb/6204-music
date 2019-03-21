@@ -74,6 +74,7 @@
 
         <main class="py-4">
             <div id="app">
+                {{ menu('main-menu') }}
             @yield('content')
             </div>
         </main>

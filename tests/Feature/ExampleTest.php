@@ -12,10 +12,14 @@ class ExampleTest extends TestCase
      *
      * @return void
      */
-    public function testBasicTest()
+    public function test_check_if_homepage_loads()
     {
         $response = $this->get('/');
 
         $response->assertStatus(200);
+    }
+
+    public function test_if_homepage_is_loaded_properly() {
+        $this->get('/')->assertSee('laravel');
     }
 }

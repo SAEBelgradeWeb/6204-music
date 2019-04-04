@@ -1,6 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
+
+    @foreach($user->notifications as $notification)
+        <li>{{$notification->data['text']}}</li>
+        @endforeach
 <div class="container">
     <div class="row justify-content-center">
         <p>

@@ -5,7 +5,11 @@ namespace App\Http\Controllers;
 use App\Album;
 use App\Artist;
 use App\Events\SongSavedEvent;
+use App\Mail\WelcomeMail;
+use App\Mail\WelcomeMail2;
+use App\Notifications\WelcomeNotification;
 use App\Song;
+use App\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -27,6 +31,14 @@ class HomeController extends Controller
      */
     public function index()
     {
+
+       // \Mail::to('something@gmail.com')->send(new WelcomeMail2());
+
+        $user = \Auth::user();
+
+
+       // $user->notify(new WelcomeNotification($user));
+
 //        $songs = Song::with(['artist', 'album'])
 //            ->where('user_id', \Auth::user()->id)
 //            ->get();
@@ -38,7 +50,7 @@ class HomeController extends Controller
             $q->where('user_id', \Auth::user()->id)->orderBy('title')->with(['album']);
         }])->orderBy('name')->get();
 
-        return view('home', compact('artists'));
+        return view('home', compact('artists', 'user'));
     }
 
     public function create()

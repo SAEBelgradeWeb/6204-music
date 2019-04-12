@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    A chabnge
+                    A new thing
                     <input type="text" id="test">
                     <button id="ok">Ok</button>
                 </div>

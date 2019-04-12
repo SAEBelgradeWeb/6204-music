@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    My app
+                    A chabnge
                     <input type="text" id="test">
                     <button id="ok">Ok</button>
                 </div>
